@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculdadora Genética</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Probabilidade Genética</h1>
+        
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <form action="/calcular" method="POST">
+            <label for="genotipo_pai">Genótipo do Progenitor</label>
+            <input type="text" id="genotipo_pai" name="genotipo_pai" required>
+            <label for="genotipo_mae">Genótipo da Genitora</label>
+            <input type="text" name="genotipo_mae" id="genotipo_mae">
+            <button type="submit">calcular</button>
+        </form>
+    </div>
+</body>
+</html>

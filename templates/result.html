@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Genótipo</th>
+                    <th>Frequência</th>
+                    <th>Probabilidade (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resultado in resultados %}
+                    <tr>
+                        <td>{{ resultado.genotipo }}</td>
+                        <td>{{ resultado.frequencia }}</td>
+                        <td>{{ resultado.probabilidade }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/">Voltar</a>
+    </div>
+</body>
+</html>
