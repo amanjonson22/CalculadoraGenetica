@@ -10,25 +10,24 @@ import itertools
 app = Flask(__name__)
 
 def gerar_combinacoes(genotipo):
-    return [
-        "".join(comb)
-        for comb in itertools.product(*[genotipo[i:i+2] for i in range(0, len(genotipo), 2)])
-    ]
+    return list(genotipo)
+
 
 def calcular_probabilidade(gametas_pai, gametas_mae):
-    combinacoes = ["".join(sorted(p + m)) for p,m in itertools.product(gametas_pai, gametas_mae)]
+    combinacoes = ["".join(sorted(p + m)) for p, m in itertools.product(gametas_pai, gametas_mae)]
+    
     total_comb = len(combinacoes)
     frequencia = {}
 
     for comb in combinacoes:
         if comb in frequencia:
             frequencia[comb] += 1
-        
         else: 
             frequencia[comb] = 1
 
     probabilidades = {genotipo: freq/total_comb for genotipo, freq in frequencia.items()}
     return probabilidades
+
 
 @app.route('/')
 def index():
@@ -50,13 +49,13 @@ def calcular():
         probabilidades = calcular_probabilidade(gametas_pai, gametas_mae)
 
         resultados = [
-            {
-                "genotipo": genotipo,
-                "frequencia": f'{probabilidade * 16:.0f}/16',
-                "probabilidade": f"{probabilidade * 100:.2f}%"
-            }
-            for genotipo, probabilidade in sorted(probabilidades.items())
-        ]
+    {
+        "genotipo": genotipo,
+        "probabilidade": f"{probabilidade * 100:.2f}%"
+    }
+    for genotipo, probabilidade in sorted(probabilidades.items())
+]
+
 
         return render_template('result.html', resultados=resultados)
     

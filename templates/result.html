@@ -12,7 +12,6 @@
             <thead>
                 <tr>
                     <th>Genótipo</th>
-                    <th>Frequência</th>
                     <th>Probabilidade (%)</th>
                 </tr>
             </thead>
@@ -20,7 +19,6 @@
                 {% for resultado in resultados %}
                     <tr>
                         <td>{{ resultado.genotipo }}</td>
-                        <td>{{ resultado.frequencia }}</td>
                         <td>{{ resultado.probabilidade }}</td>
                     </tr>
                 {% endfor %}
